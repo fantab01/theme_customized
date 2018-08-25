@@ -25,6 +25,12 @@ get_header(); ?>
 					<div class="clear"></div>
 					
 					<div class="archive-container">
+
+						<h3><?php _e( 'Categories', 'rams' ); ?></h3>
+
+						<ul>
+							<?php wp_list_categories('title_li='); ?>
+						</ul>
 				
 						<h3><?php _e( 'Posts', 'rams' ); ?></h3>
 											            
@@ -40,36 +46,14 @@ get_header(); ?>
 
 							foreach( $archive_posts as $archive_post ) : ?>
 								<li>
-									<a href="<?php echo get_permalink( $archive_post->ID ); ?>"><?php echo get_the_title( $archive_post->ID );?> <span>(<?php the_time( get_option( 'date_format' ), $archive_post->ID ); ?>)</span>
+									<a href="<?php echo get_permalink( $archive_post->ID ); ?>"><?php echo get_the_title( $archive_post->ID );?> 
 									</a>
 								</li>
 							<?php endforeach; ?>
 
 						</ul>
 			            			            
-			            <h3><?php _e( 'Categories', 'rams' ); ?></h3>
-			            
-			            <?php wp_list_categories('title_li='); ?>
-			            
-			            <h3><?php _e( 'Tags', 'rams' ); ?></h3>
-			            
-			            <ul>
-							<?php 
-							$tags = get_tags();
-			                
-			                if ( $tags ) {
-			                    foreach ( $tags as $tag ) {
-			                 	   echo '<li><a href="' . get_tag_link( $tag->term_id ) . '" title="' . sprintf( __( "View all posts in %s", 'rams' ), $tag->name ) . '" ' . '>' . $tag->name.'</a></li> ';
-			                    }
-			                }
-			                ?>
-			            </ul>
-			            
-			            <h3><?php _e( 'Contributors', 'rams' ); ?></h3>
-		            	
-		            	<ul>
-		            		<?php wp_list_authors(); ?> 
-		            	</ul>
+
 		            	
 		            	<h3><?php _e( 'Archives by Year', 'rams' ); ?></h3>
 		            	

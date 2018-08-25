@@ -5,8 +5,54 @@ jQuery(document).ready(function($) {
 	$(".nav-toggle").on("click", function(){	
 		$(this).toggleClass("active");
 		$(".mobile-menu").slideToggle();
+		$( 'body' ).toggleClass("enable-click");
 		return false;
 	});
+
+	$(document).ready(function () {
+		$(document).click(function (event) {
+			var clickover = $(event.target);
+			var _opened = $(".nav-toggle").hasClass("nav-toggle hidden active");
+			if (_opened === true && !clickover.hasClass("navbar-toggle")) {
+				$(".nav-toggle").click();
+			}
+		});
+	});
+	
+	var mainHeader = $('.sidebar'),
+		headerHeight = mainHeader.height();
+	
+	var scrolling = false,
+		previousTop = 0,
+		currentTop = 0,
+		scrollDelta = 2,
+		scrollOffset = 150;
+	
+	$(window).on('scroll', function(){
+		if( !scrolling ) {
+			scrolling = true;
+			(!window.requestAnimationFrame)
+				? setTimeout(autoHideHeader, 250)
+				: requestAnimationFrame(autoHideHeader);
+		}
+	});
+	
+	$(window).on('resize', function(){
+		headerHeight = mainHeader.height();
+	});
+	
+	function autoHideHeader() {
+		var currentTop = $(window).scrollTop();
+		if (previousTop - currentTop > scrollDelta) {
+			//if scrolling up...
+			mainHeader.removeClass('is-hidden');
+		} else if( currentTop - previousTop > scrollDelta && currentTop > scrollOffset) {
+			//if scrolling down...
+			mainHeader.addClass('is-hidden');
+		}
+		previousTop = currentTop;
+		scrolling = false;
+	}
 	
 	
 	// Hide mobile-menu > 960

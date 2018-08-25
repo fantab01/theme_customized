@@ -1205,7 +1205,7 @@ li.comment { position: relative; }
 	z-index: 2;
 }
 
-.bypostauthor > .comment .avatar { border: 4px solid #6AA897; }
+.bypostauthor > .comment .avatar { border: 4px solid #888; }
 
 .comment-inner { margin-left: 80px; }
 

@@ -1,18 +1,6 @@
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php if ( has_post_thumbnail() ) : ?>
-	
-		<div class="featured-media">	
-			
-			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-			
-				<?php the_post_thumbnail( 'post-image' ); ?>
-			
-			</a>
-			
-		</div><!-- .featured-media -->
-			
-	<?php endif; ?>
+
 	
 	<div class="post-inner">
 		
@@ -33,6 +21,20 @@
 		    <h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 		    	    
 		</div><!-- .post-header -->
+
+		<?php if ( has_post_thumbnail() ) : ?>
+			
+			<div class="featured-media">	
+				
+				<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				
+					<?php the_post_thumbnail( 'post-image' ); ?>
+				
+				</a>
+				
+			</div><!-- .featured-media -->
+				
+		<?php endif; ?>
 		
 		<div class="post-content">
 		

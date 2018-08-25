@@ -16,6 +16,18 @@
 		<div class="sidebar bg-mint">
 		
 			<div class="sidebar-inner">
+
+				<ul class="mobile-menu bg-dark hidden">
+					
+					<?php
+					if ( has_nav_menu( 'primary' ) ) {
+						wp_nav_menu( $nav_menu_args );
+					} else {
+						wp_list_pages( $list_pages_args );
+					} 
+					?>
+					
+				</ul>
 						
 				<?php if ( get_theme_mod( 'rams_logo' ) ) : ?>
 				
@@ -73,7 +85,7 @@
 					
 				 </ul>
 				 
-				 <p class="credits"><?php _e( 'Theme by', 'rams' ); ?> <a href="http://www.andersnoren.se">Anders Nor&eacute;n</a></p>
+				 
 				
 				 <div class="clear"></div>
 			
@@ -81,17 +93,7 @@
 							
 		</div><!-- .sidebar -->
 		
-		<ul class="mobile-menu bg-dark hidden">
-					
-			<?php
-			if ( has_nav_menu( 'primary' ) ) {
-				wp_nav_menu( $nav_menu_args );
-			} else {
-				wp_list_pages( $list_pages_args );
-			} 
-			?>
-			
-		 </ul>
+
 	
 		<div class="wrapper" id="wrapper">
 		
