@@ -247,6 +247,14 @@ if ( ! function_exists( 'rams_body_post_class' ) ) {
 		
 		$classes[] = has_post_thumbnail() ? 'has-featured-image' : 'no-featured-image';
 
+		if ( is_page_template( 'full-width-gallery.php' ) ) {
+			$classes[] = 'full-width-gallery';
+		}
+
+		if ( is_page_template( 'normal-gallery.php' ) ) {
+			$classes[] = 'normal-gallery';
+		}
+
 		return $classes;
 	}
 	add_filter( 'post_class', 'rams_body_post_class' );
