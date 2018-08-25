@@ -204,6 +204,37 @@ function add_prism() {
 }
 add_action('wp_enqueue_scripts', 'add_prism');
 
+function add_katex() {
+	wp_register_style('katexCSS', 'https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css');
+	wp_register_script('katexJS', 'https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js');
+	wp_register_script('autorenderJS', 'https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js');
+	wp_register_script('katexdelimitersJS', get_stylesheet_directory_uri() . '/js/katexdelimiters.js');
+
+	global $post, $wp_query;
+	$post_contents = '';
+	if ( is_singular() ) {
+			$post_contents = $post->post_content;
+	} elseif ( is_archive() || (is_front_page() && is_home())) {
+			$post_ids = wp_list_pluck( $wp_query->posts, 'ID' );
+			foreach ( $post_ids as $post_id ) {
+					$post_contents .= get_post_field( 'post_content', $post_id );
+			}
+	}
+	if ( strpos( $post_contents, '$$$' ) !== false ) {
+			wp_enqueue_style('katexCSS');
+			wp_enqueue_script('katexJS');
+			wp_enqueue_script('autorenderJS');
+			wp_enqueue_script('katexdelimitersJS');
+	}
+	if ( strpos( $post_contents, '$$' ) !== false ) {
+			wp_enqueue_style('katexCSS');
+			wp_enqueue_script('katexJS');
+			wp_enqueue_script('autorenderJS');
+			wp_enqueue_script('katexdelimitersJS');
+	}
+}
+add_action('wp_enqueue_scripts', 'add_katex');
+
 
 /* ---------------------------------------------------------------------------------------------
    BODY & POST CLASSES
