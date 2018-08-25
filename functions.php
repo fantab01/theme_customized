@@ -235,6 +235,15 @@ function add_katex() {
 }
 add_action('wp_enqueue_scripts', 'add_katex');
 
+function remove_unnecessary_resources() {
+	if( !is_page_template( 'normal-gallery.php' ) && !is_page_template( 'full-width-gallery.php' ) ){
+		wp_dequeue_style('finalTilesGallery_stylesheet');
+		wp_dequeue_style('fontawesome_stylesheet');
+		wp_dequeue_script('finalTilesGallery');
+	}
+}
+add_action( 'wp_enqueue_scripts', 'remove_unnecessary_resources' );
+
 
 /* ---------------------------------------------------------------------------------------------
    BODY & POST CLASSES
