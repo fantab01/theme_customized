@@ -696,8 +696,7 @@ a.post-quote:hover {
 .post-content ol,
 .post-content li,
 .post-content address,
-.post-content dl,
-.post-content pre {
+.post-content dl {
 	line-height: 160%;
 	margin-bottom: 1.3em;
 }
@@ -802,14 +801,16 @@ em, q {  font-style: italic;  }
 
 abbr, acronym { cursor: help; }
 
-.post-content code, 
+
 .post-content kbd,
-.post-content pre,
 .post-content tt {
 	font-size: 15px;
 	background: #EEE;
 	font-family: Menlo, Monaco, monospace;
 }
+
+.post-content code,
+.post-content pre { font-size: 15px; }
 
 .post-content kbd,
 .post-content code,
@@ -881,19 +882,7 @@ abbr, acronym { cursor: help; }
 	letter-spacing: 1px;
 }
 
-.post-content pre {
-	white-space: pre-wrap;       /* css-3 */
-	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-	white-space: -pre-wrap;      /* Opera 4-6 */
-	white-space: -o-pre-wrap;    /* Opera 7 */
-	word-wrap: break-word;       /* Internet Explorer 5.5+ */
-	line-height: 140%;
-	padding: 2% 2.5%;
-	background: #FAFAFA;
-	border: 1px solid #DDD;
-	color: #333;
-	font-size: 0.7em;
-}
+
 
 .post-content abbr,
 .post-content acronym { 
@@ -1887,8 +1876,7 @@ li.comment { position: relative; }
 	.post-content ol,
 	.post-content address,
 	.post-content dl,
-	.post-content .wp-caption,
-	.post-content pre {
+	.post-content .wp-caption {
 		line-height: 150%;
 		margin-bottom: 1.2em;
 	}

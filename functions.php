@@ -183,6 +183,27 @@ function remove_more_jump_link($link) {
 }
 add_filter('the_content_more_link', 'remove_more_jump_link');
 
+function add_prism() {
+	wp_register_style('prismCSS', get_stylesheet_directory_uri() . '/css/prism.css');
+	wp_register_script('prismJS', get_stylesheet_directory_uri() . '/js/prism.js');
+
+	global $post, $wp_query;
+	$post_contents = '';
+	if ( is_singular() ) {
+			$post_contents = $post->post_content;
+	} elseif ( is_archive() || (is_front_page() && is_home())) {
+			$post_ids = wp_list_pluck( $wp_query->posts, 'ID' );
+			foreach ( $post_ids as $post_id ) {
+					$post_contents .= get_post_field( 'post_content', $post_id );
+			}
+	}
+	if ( strpos( $post_contents, '<code class="language-' ) !== false ) {
+			wp_enqueue_style('prismCSS');
+			wp_enqueue_script('prismJS');
+	}
+}
+add_action('wp_enqueue_scripts', 'add_prism');
+
 
 /* ---------------------------------------------------------------------------------------------
    BODY & POST CLASSES
