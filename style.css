@@ -813,7 +813,6 @@ abbr, acronym { cursor: help; }
 .post-content pre { font-size: 15px; }
 
 .post-content kbd,
-.post-content code,
 .post-content tt {
 	padding: 5px;
 	border-radius: 3px;

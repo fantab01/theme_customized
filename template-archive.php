@@ -31,7 +31,19 @@ get_header(); ?>
 						<ul>
 							<?php wp_list_categories('title_li='); ?>
 						</ul>
-				
+
+		            	<h3><?php _e( 'Archives by Year', 'rams' ); ?></h3>
+		            	
+		            	<ul>
+		            	    <?php wp_get_archives( 'type=yearly' ); ?>
+		            	</ul>
+		            	
+		            	<h3><?php _e( 'Archives by Month', 'rams' ); ?></h3>
+		            	
+		            	<ul>
+		            	    <?php wp_get_archives( 'type=monthly' ); ?>
+		            	</ul>
+
 						<h3><?php _e( 'Posts', 'rams' ); ?></h3>
 											            
 			            <ul class="posts-archive-list">
@@ -52,26 +64,6 @@ get_header(); ?>
 							<?php endforeach; ?>
 
 						</ul>
-			            			            
-
-		            	
-		            	<h3><?php _e( 'Archives by Year', 'rams' ); ?></h3>
-		            	
-		            	<ul>
-		            	    <?php wp_get_archives( 'type=yearly' ); ?>
-		            	</ul>
-		            	
-		            	<h3><?php _e( 'Archives by Month', 'rams' ); ?></h3>
-		            	
-		            	<ul>
-		            	    <?php wp_get_archives( 'type=monthly' ); ?>
-		            	</ul>
-		            
-			            <h3><?php _e( 'Archives by Day', 'rams' ); ?></h3>
-			            
-			            <ul>
-			                <?php wp_get_archives( 'type=daily' ); ?>
-			            </ul>
 		        
 		            </div><!-- .archive-container -->
 										
