@@ -705,7 +705,8 @@ a.post-quote:hover {
 .post-content *:last-child { margin-bottom: 0; }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
-	margin: 50px 0 20px;
+	margin: 20px 0 20px;
+	padding-top: 30px;
 	font-family: 'Montserrat', sans-serif;
 	line-height: 120%;
 	font-weight: 700;
@@ -714,7 +715,7 @@ a.post-quote:hover {
 
 .post-content h1 { font-size: 1.75em; }
 .post-content h2 { font-size: 1.5em; }
-.post-content h3 { font-size: 1.25em; }
+.post-content h3 { font-size: 1.1em; }
 
 .post-content h4 { 
 	font-size: 1.1em; 
@@ -1737,7 +1738,7 @@ li.comment { position: relative; }
 	
 	.post-content h1 { font-size: 1.5em; }
 	.post-content h2 { font-size: 1.25em; }
-	.post-content h3 { font-size: 1.1em; }
+	.post-content h3 { font-size: 1.05em; }
 	.post-content h4 { font-size: 1em; }
 	.post-content h5 { font-size: 0.9em; }
 	.post-content h6 { font-size: 0.7em; }

@@ -244,6 +244,37 @@ function remove_unnecessary_resources() {
 }
 add_action( 'wp_enqueue_scripts', 'remove_unnecessary_resources' );
 
+function unblock_gravatar( $avatar ) {
+    $avatar = str_replace( array( 'https://secure.gravatar.com' ), 'https://gravatar.loli.net', $avatar );
+    return $avatar;
+}
+add_filter( 'get_avatar', 'unblock_gravatar' );
+
+function article_index($content) {
+	$matches = array();
+	$ul_li = '';
+	$r = "/<h2>([^<]+)<\/h2>/im";
+	if(is_singular() && preg_match_all($r, $content, $matches)) {
+		foreach($matches[1] as $num => $title) {
+			$title = trim(strip_tags($title));
+			$content = str_replace($matches[0][$num], '<h2 id="title-'.$num.'">'.$title.'</h2>', $content);
+			$ul_li .= '<li><a href="#title-'.$num.'" title="'.$title.'">'.$title."</a></li>\n";
+		}
+		$content = "\n<div id=\"article-index\">
+			<strong>目录</strong>
+			<ul id=\"index-ul\">\n" . $ul_li . "</ul>
+			</div>\n" . $content;
+	}
+	return $content;
+}
+add_filter( 'the_content', 'article_index' );
+
+function wpd_change_date_structure(){
+    global $wp_rewrite;
+    $wp_rewrite->date_structure = 'archives/%year%/%monthnum%/%day%';
+}
+add_action( 'init', 'wpd_change_date_structure' );
+
 
 /* ---------------------------------------------------------------------------------------------
    BODY & POST CLASSES

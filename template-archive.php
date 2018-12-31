@@ -26,26 +26,20 @@ get_header(); ?>
 					
 					<div class="archive-container">
 
+		            	<h3><?php _e( 'Archives by Year', 'rams' ); ?></h3>
+
+		            	<ul>
+		            	    <?php wp_get_archives( 'type=yearly' ); ?>
+		            	</ul>
+
 						<h3><?php _e( 'Categories', 'rams' ); ?></h3>
 
 						<ul>
 							<?php wp_list_categories('title_li='); ?>
 						</ul>
 
-		            	<h3><?php _e( 'Archives by Year', 'rams' ); ?></h3>
-		            	
-		            	<ul>
-		            	    <?php wp_get_archives( 'type=yearly' ); ?>
-		            	</ul>
-		            	
-		            	<h3><?php _e( 'Archives by Month', 'rams' ); ?></h3>
-		            	
-		            	<ul>
-		            	    <?php wp_get_archives( 'type=monthly' ); ?>
-		            	</ul>
-
 						<h3><?php _e( 'Posts', 'rams' ); ?></h3>
-											            
+				            
 			            <ul class="posts-archive-list">
 
 							<?php 
