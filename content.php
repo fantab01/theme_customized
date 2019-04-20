@@ -12,7 +12,7 @@
 				
 				<?php if ( is_sticky() ) : ?>
 				
-					<span class="sep">/</span> <span class="is-sticky"><?php _e( 'Sticky', 'rams' ); ?></span>
+					<span class="sep">/</span> <span class="is-sticky"><?php _e( '置顶', 'rams' ); ?></span>
 				
 				<?php endif; ?>
 				

@@ -81,7 +81,7 @@ if ( ! function_exists( 'rams_load_style' ) ) {
 
 	function rams_load_style() {
 		if ( ! is_admin() ) {
-			wp_register_style( 'rams_googleFonts', 'https://fonts.loli.net/css?family=Crimson+Text:400,400i,700,700i|Montserrat:400,700|Noto+Serif|Palanquin:700' );
+			wp_register_style( 'rams_googleFonts', 'https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i|Montserrat:400,700|Noto+Serif|Palanquin:700' );
 			wp_register_style( 'rams_style', get_stylesheet_uri() );
 			
 			wp_enqueue_style( 'rams_googleFonts' );
@@ -102,7 +102,7 @@ if ( ! function_exists( 'rams_add_editor_styles' ) ) {
 
 	function rams_add_editor_styles() {
 		add_editor_style( 'rams-editor-styles.css' );
-		$font_url = 'https://fonts.loli.net/css?family=Crimson+Text:400,400i,700,700i|Montserrat:400,700|Noto+Serif|Palanquin:700';
+		$font_url = 'https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i|Montserrat:400,700|Noto+Serif|Palanquin:700';
 		add_editor_style( str_replace( ',', '%2C', $font_url ) );
 	}
 	add_action( 'init', 'rams_add_editor_styles' );
@@ -245,7 +245,7 @@ function remove_unnecessary_resources() {
 add_action( 'wp_enqueue_scripts', 'remove_unnecessary_resources' );
 
 function unblock_gravatar( $avatar ) {
-    $avatar = str_replace( array( 'https://secure.gravatar.com' ), 'https://gravatar.loli.net', $avatar );
+    $avatar = str_replace( array( 'https://secure.gravatar.com/avatar' ), 'https://cdn.v2ex.com/gravatar', $avatar );
     return $avatar;
 }
 add_filter( 'get_avatar', 'unblock_gravatar' );

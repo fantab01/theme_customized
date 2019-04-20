@@ -16,7 +16,7 @@
 				
 				<?php if ( is_sticky() ) : ?>
 				
-					<span class="sep">/</span> <?php _e( 'Sticky', 'rams' ); ?>
+					<span class="sep">/</span> <?php _e( '置顶', 'rams' ); ?>
 				
 				<?php endif; ?>
 				
