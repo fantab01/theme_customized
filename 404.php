@@ -14,7 +14,7 @@
 	                                                	            
         <div class="post-content">
         	            
-            <p><?php _e( "It seems like you have tried to open a page that doesn't exist. It could have been deleted, moved, or it never existed at all. You are welcome to search for what you are looking for with the form below.", 'rams' ); ?></p>
+            <p><?php _e( "你似乎是在尝试打开一个并不存在的网页，这个网页可能已被删除或者从未存在过，但也可能被移动到了其他地方。试着搜索一下？", 'rams' ); ?></p>
             
             <?php get_search_form(); ?>
             
