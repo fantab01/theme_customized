@@ -44,6 +44,12 @@
 			<?php echo get_next_posts_link( __( 'Older posts', 'rams' ) . ' &rarr;' ); ?>
 				
 			<?php echo get_previous_posts_link( '&larr; ' . __( 'Newer posts', 'rams' ) ); ?>
+
+			<?php if ( (is_home() || is_front_page()) && !is_paged() ) { ?>
+			
+				<a class="copyright-link" href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备19034455号-1</a>
+		
+			<?php } ?>
 			
 			<div class="clear"></div>
 						
