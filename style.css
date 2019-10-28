@@ -356,6 +356,7 @@ img#wpstats { display: none !important } /* silly wp stats */
 
 .sticky .is-sticky { display: inline; }
 
+.post-status-inner,
 .post-inner { padding: 8%; }
 
 
@@ -379,6 +380,7 @@ img#wpstats { display: none !important } /* silly wp stats */
 /* Post header --------------------------------------- */
 
 
+.post-status-header,
 .post-header { margin-bottom: 40px; }
 
 .post-date {
@@ -392,6 +394,22 @@ img#wpstats { display: none !important } /* silly wp stats */
 .post-date a:hover { color: #666; }
 
 .post-date .sep {
+	font-weight: 400;
+	color: #ddd;
+	margin: 0 5px;
+}
+
+.post-status-date {
+	font-size: 1.2em;
+	font-weight: 700;
+	margin-bottom: 10px;
+	color: #777;
+}
+
+.post-status-date a { color: #777; }
+.post-status-date a:hover { color: #555; }
+
+.post-status-date .sep {
 	font-weight: 400;
 	color: #ddd;
 	margin: 0 5px;
@@ -1663,13 +1681,15 @@ li.comment { position: relative; }
 
 	/* blog */
 	
+	.post-status-header,
 	.post-header { margin-bottom: 30px; }
 	
 	.posts .post,
 	.posts .page { margin-bottom: 0; }
 	
 	.post + .post { border-top: 1px solid #eee; }
-		
+
+	.post-status-inner,
 	.post-inner,
 	.archive-nav { padding: 40px 5%; }
 	
@@ -1823,6 +1843,7 @@ li.comment { position: relative; }
 
 	/* blog */
 	
+	.post-status-header,
 	.post-header { margin-bottom: 20px; }
 	
 	.post-title { font-size: 1.75em; }

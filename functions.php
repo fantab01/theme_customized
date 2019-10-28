@@ -17,7 +17,7 @@ if ( ! function_exists( 'rams_setup' ) ) {
 		add_image_size( 'post-image', 800, 9999 );
 		
 		// Post formats
-		add_theme_support( 'post-formats', array( 'gallery', 'quote' ) );
+		add_theme_support( 'post-formats', array( 'gallery', 'quote', 'status' ) );
 		
 		add_theme_support('title-tag');
 			
