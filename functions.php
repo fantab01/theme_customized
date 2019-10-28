@@ -250,6 +250,14 @@ function unblock_gravatar( $avatar ) {
 }
 add_filter( 'get_avatar', 'unblock_gravatar' );
 
+function exclude_category_home( $query ) {
+    if ( $query->is_home ) {
+        $query->set( 'cat', '-2' );
+    }
+    return $query;
+}
+add_filter( 'pre_get_posts', 'exclude_category_home' );
+
 function article_index($content) {
 	$matches = array();
 	$ul_li = '';
