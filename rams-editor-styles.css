@@ -6,7 +6,7 @@
 
 
 body#tinymce.wp-editor { 
-	font-family: 'Crimson Text', 'Times New Roman', Times, serif;
+	font-family: 'Helvetica', "Microsoft Yahei", "微软雅黑", sans-serif;
     font-size: 23px;
     color: #333;
     width: 672px;
