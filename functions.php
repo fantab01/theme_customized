@@ -250,6 +250,8 @@ function unblock_gravatar( $avatar ) {
 }
 add_filter( 'get_avatar', 'unblock_gravatar' );
 
+add_filter( 'big_image_size_threshold', '__return_false' );
+
 function exclude_category_home( $query ) {
     if ( $query->is_home ) {
         $query->set( 'cat', '-2' );
