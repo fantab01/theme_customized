@@ -37,7 +37,7 @@
 
 	<?php endif; 
 	
-	if ( $wp_query->max_num_pages > 1 ) : ?>
+	if ( $wp_query->max_num_pages > 0 ) : ?>
 	
 		<div class="archive-nav">
 				
