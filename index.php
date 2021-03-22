@@ -47,7 +47,7 @@
 
 			<?php if ( (is_home() || is_front_page()) && !is_paged() ) { ?>
 			
-				<a class="copyright-link" href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备19034455号-1</a>
+				<a class="copyright-link" href="https://beian.miit.gov.cn/" target="_blank">豫ICP备19034455号-1</a>
 		
 			<?php } ?>
 			
