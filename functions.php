@@ -254,7 +254,7 @@ add_filter( 'big_image_size_threshold', '__return_false' );
 
 function exclude_category_home( $query ) {
     if ( $query->is_home ) {
-        $query->set( 'cat', '-2' );
+        $query->set( 'cat', '-4' );
     }
     return $query;
 }
