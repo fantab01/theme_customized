@@ -263,21 +263,21 @@ add_filter( 'pre_get_posts', 'exclude_category_home' );
 function article_index($content) {
 	$matches = array();
 	$ul_li = '';
-	$r = "/<h2>([^<]+)<\/h2>/im";
-	if(is_singular() && preg_match_all($r, $content, $matches)) {
-		foreach($matches[1] as $num => $title) {
-			$title = trim(strip_tags($title));
-			$content = str_replace($matches[0][$num], '<h2 id="title-'.$num.'">'.$title.'</h2>', $content);
-			$ul_li .= '<li><a href="#title-'.$num.'" title="'.$title.'">'.$title."</a></li>\n";
-		}
-		$content = "\n<div id=\"article-index\">
-			<strong>目录</strong>
-			<ul id=\"index-ul\">\n" . $ul_li . "</ul>
-			</div>\n" . $content;
+	$r = '/<h([2-6]).*?\>(.*?)<\/h[2-6]>/is';
+	if(is_single() && preg_match_all($r, $content, $matches)) {
+	foreach($matches[1] as $key => $value) {
+	$title = trim(strip_tags($matches[2][$key]));
+	$content = str_replace($matches[0][$key], '<h' . $value . ' id="title-' . $key . '">'.$title.'</h2>', $content);
+	$ul_li .= '<li><a href="#title-'.$key.'" title="'.$title.'">'.$title."</a></li>\n";
+	}
+	$content = "\n<div id=\"article-index\">
+	<strong>目录</strong>
+	<ul id=\"index-ul\">\n" . $ul_li . "</ul>
+	</div>\n" . $content;
 	}
 	return $content;
-}
-add_filter( 'the_content', 'article_index' );
+	}
+	add_filter( 'the_content', 'article_index' );
 
 function wpd_change_date_structure(){
     global $wp_rewrite;
