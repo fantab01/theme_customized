@@ -720,7 +720,7 @@ a.post-quote:hover {
 }
 
 .post-content > *:first-child { margin-top: 0; }
-.post-content *:last-child { margin-bottom: 0; }
+.post-content > *:last-child { margin-bottom: 0; }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
 	margin: 20px 0 20px;
