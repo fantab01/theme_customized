@@ -448,47 +448,6 @@ img#wpstats { display: none !important } /* silly wp stats */
 /* -------------------------------------------------------------------------------- */
 
 
-/* Format gallery --------------------------------------- */
-
-
-.flexslider { 
-	position: relative; 
-	overflow: hidden;
-}
-
-.flex-direction-nav {
-	position: absolute;
-	top: 50%;
-	right: 0;
-	left: 0;
-	margin-top: -25px;
-}
-
-.flex-direction-nav a {
-	display: block;
-	width: 50px;
-	height: 50px;
-	background: #444 no-repeat center;
-	background-size: auto 10px;
-	position: absolute;
-}
-
-.flex-direction-nav .flex-prev { 
-	left: 0; 
-	background-image: url(images/icons/chevron-left_w.png);
-}
-
-.flex-direction-nav .flex-next { 
-	right: 0; 
-	background-image: url(images/icons/chevron-right_w.png);
-}
-
-.flex-direction-nav a:hover { background-color: #6AA897; } 
-
-.flex-direction-nav .flex-prev:active { margin-left: -2px; }
-.flex-direction-nav .flex-next:active { margin-right: -2px; }
-
-
 /* Format quote --------------------------------------- */
 
 

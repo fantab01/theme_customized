@@ -2,8 +2,6 @@
 
 	<div class="featured-media">	
 		
-		<?php rams_flexslider( 'post-image' ); ?>
-		
 	</div><!-- .featured-media -->
 	
 	<div class="post-inner">

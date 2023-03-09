@@ -85,18 +85,7 @@ jQuery(document).ready(function($) {
 		$(".post-meta-inner").slideToggle();
 		return false;
 	});
-	
-	
-	// Load Flexslider
-    $(".flexslider").flexslider({
-        animation: "slide",
-        controlNav: false,
-        prevText: "",
-        nextText: "",
-        smoothHeight: true   
-    });
-    
-    
+
     // Post meta tabs
     $('.tab-selector a').click(function() {
     	$('.tab-selector a').removeClass('active');
@@ -148,19 +137,3 @@ jQuery(document).ready(function($) {
 	
 	
 });
-
-// After Jetpack Infinite Scroll posts have loaded
-( function( $ ) {
-	$( document.body ).on( 'post-load', function () {
-		
-		// Run Flexslider
-		$(".flexslider").flexslider({
-		    animation: "slide",
-		    controlNav: false,
-		    prevText: "",
-		    nextText: "",
-		    smoothHeight: true   
-		});
-		
-	} );
-} )( jQuery );

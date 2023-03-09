@@ -12,9 +12,7 @@
 			
 			if ( $post_format == 'gallery' ) : ?>
 			
-				<div class="featured-media">	
-	
-					<?php rams_flexslider( 'post-image' ); ?>
+				<div class="featured-media">
 					
 				</div><!-- .featured-media -->
 			

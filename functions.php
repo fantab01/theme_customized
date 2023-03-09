@@ -58,9 +58,6 @@ if ( ! function_exists( 'rams_load_javascript_files' ) ) {
 
 		if ( !is_admin() ) {
 			wp_register_script( 'rams_global', get_template_directory_uri() . '/js/global.js', array( 'jquery' ), '', true );
-			wp_register_script( 'rams_flexslider', get_template_directory_uri() . '/js/flexslider.min.js', array( 'jquery' ), '', true );
-			
-			wp_enqueue_script( 'rams_flexslider' );
 			wp_enqueue_script( 'rams_global' );
 			
 			if ( is_singular() && get_option( 'thread_comments' ) ) { wp_enqueue_script( 'comment-reply' ); }
@@ -81,7 +78,7 @@ if ( ! function_exists( 'rams_load_style' ) ) {
 
 	function rams_load_style() {
 		if ( ! is_admin() ) {
-			wp_register_style( 'rams_googleFonts', 'https://fonts.googleapis.com/css?family=Montserrat:400,700' );
+			wp_register_style( 'rams_googleFonts', 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Noto+Serif+SC:500,900' );
 			wp_register_style( 'rams_style', get_stylesheet_uri() );
 			
 			wp_enqueue_style( 'rams_googleFonts' );
@@ -102,7 +99,7 @@ if ( ! function_exists( 'rams_add_editor_styles' ) ) {
 
 	function rams_add_editor_styles() {
 		add_editor_style( 'rams-editor-styles.css' );
-		$font_url = 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
+		$font_url = 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Noto+Serif+SC:500,900';
 		add_editor_style( str_replace( ',', '%2C', $font_url ) );
 	}
 	add_action( 'init', 'rams_add_editor_styles' );
@@ -183,73 +180,80 @@ function remove_more_jump_link($link) {
 }
 add_filter('the_content_more_link', 'remove_more_jump_link');
 
+//替换<code>标签为<code class="language-markdown">
+function replace_code_tag($content) {
+	$content = str_replace('<code>', '<code class="language-markdown">', $content);
+	return $content;
+}
+add_filter('the_content', 'replace_code_tag');
+
 function add_prism() {
 	wp_register_style('prismCSS', get_stylesheet_directory_uri() . '/css/prism.css');
 	wp_register_script('prismJS', get_stylesheet_directory_uri() . '/js/prism.js');
-
-	global $post, $wp_query;
-	$post_contents = '';
-	if ( is_singular() ) {
-			$post_contents = $post->post_content;
-	} elseif ( is_archive() || (is_front_page() && is_home())) {
-			$post_ids = wp_list_pluck( $wp_query->posts, 'ID' );
-			foreach ( $post_ids as $post_id ) {
-					$post_contents .= get_post_field( 'post_content', $post_id );
-			}
+	$content = '';
+	if (is_singular()) {
+		$content = get_the_content();
+	} else {
+		global $wp_query;
+		$posts = $wp_query->posts;
+		foreach ($posts as $post) {
+			$content .= get_the_content(null, false, $post);
+		}
 	}
-	if ( strpos( $post_contents, '<code class="language-' ) !== false ) {
-			wp_enqueue_style('prismCSS');
-			wp_enqueue_script('prismJS');
+	if (strpos( $content, '<code class="language-') !== false) {
+		wp_enqueue_style('prismCSS');
+		wp_enqueue_script('prismJS');
+	}
+	if (strpos( $content, '<code>') !== false) {
+		wp_enqueue_style('prismCSS');
+		wp_enqueue_script('prismJS');
 	}
 }
 add_action('wp_enqueue_scripts', 'add_prism');
 
 function add_katex() {
-	wp_register_style('katexCSS', 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css');
-	wp_register_script('katexJS', 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js');
-	wp_register_script('autorenderJS', 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js');
+	wp_register_style('katexCSS', get_stylesheet_directory_uri() . '/css/katex.min.css');
+	wp_register_script('katexJS', get_stylesheet_directory_uri() . '/js/katex.min.js');
+	wp_register_script('autorenderJS', get_stylesheet_directory_uri() . '/js/auto-render.min.js');
 	wp_register_script('katexdelimitersJS', get_stylesheet_directory_uri() . '/js/katexdelimiters.js');
-
-	global $post, $wp_query;
-	$post_contents = '';
-	if ( is_singular() ) {
-			$post_contents = $post->post_content;
-	} elseif ( is_archive() || (is_front_page() && is_home())) {
-			$post_ids = wp_list_pluck( $wp_query->posts, 'ID' );
-			foreach ( $post_ids as $post_id ) {
-					$post_contents .= get_post_field( 'post_content', $post_id );
-			}
+	$content = '';
+	if (is_singular()) {
+		$content = get_the_content();
+	} else {
+		global $wp_query;
+		$posts = $wp_query->posts;
+		foreach ($posts as $post) {
+			$content .= get_the_content(null, false, $post);
+		}
 	}
-	if ( strpos( $post_contents, '$$' ) !== false ) {
-			wp_enqueue_style('katexCSS');
-			wp_enqueue_script('katexJS');
-			wp_enqueue_script('autorenderJS');
-			wp_enqueue_script('katexdelimitersJS');
+	if ( strpos( $content, '$$' ) !== false ) {
+		wp_enqueue_style('katexCSS');
+		wp_enqueue_script('katexJS');
+		wp_enqueue_script('autorenderJS');
+		wp_enqueue_script('katexdelimitersJS');
 	}
-	if ( strpos( $post_contents, '$' ) !== false ) {
-			wp_enqueue_style('katexCSS');
-			wp_enqueue_script('katexJS');
-			wp_enqueue_script('autorenderJS');
-			wp_enqueue_script('katexdelimitersJS');
+	if ( strpos( $content, '$' ) !== false ) {
+		wp_enqueue_style('katexCSS');
+		wp_enqueue_script('katexJS');
+		wp_enqueue_script('autorenderJS');
+		wp_enqueue_script('katexdelimitersJS');
 	}
 }
 add_action('wp_enqueue_scripts', 'add_katex');
 
 function remove_unnecessary_resources() {
+	wp_dequeue_style( 'classic-theme-styles' );
 	if( !is_page_template( 'normal-gallery.php' ) && !is_page_template( 'full-width-gallery.php' ) ){
 		wp_dequeue_style('finalTilesGallery_stylesheet');
 		wp_dequeue_style('fontawesome_stylesheet');
+		wp_dequeue_style('everlightbox');
 		wp_dequeue_script('finalTilesGallery');
+		wp_dequeue_script('everlightbox');
 	}
 }
 add_action( 'wp_enqueue_scripts', 'remove_unnecessary_resources' );
 
-function unblock_gravatar( $avatar ) {
-    $avatar = str_replace( array( 'https://secure.gravatar.com/avatar' ), 'https://cdn.v2ex.com/gravatar', $avatar );
-    return $avatar;
-}
-add_filter( 'get_avatar', 'unblock_gravatar' );
-
+//解决大图片自动压缩问题
 add_filter( 'big_image_size_threshold', '__return_false' );
 
 function exclude_category_home( $query ) {
@@ -331,57 +335,6 @@ if ( ! function_exists( 'rams_admin_css' ) ) {
 	</style>';
 	}
 	add_action( 'admin_head', 'rams_admin_css' );
-
-}
-
-
-/* ---------------------------------------------------------------------------------------------
-   FLEXSLIDER OUTPUT
-   --------------------------------------------------------------------------------------------- */
-
-
-if ( ! function_exists( 'rams_flexslider' ) ) {
-
-	function rams_flexslider( $size ) {
-
-		$attachment_parent = is_page() ? $post->ID : get_the_ID();
-
-		if ( $images = get_posts( array(
-			'post_parent'    => $attachment_parent,
-			'post_type'      => 'attachment',
-			'numberposts'    => -1, // show all
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'post_status'    => null,
-			'post_mime_type' => 'image',
-		) ) ) { ?>
-		
-			<div class="flexslider">
-			
-				<ul class="slides">
-		
-					<?php foreach( $images as $image ) :
-						
-						global $attachment_id;
-						
-						$default_attr = array(
-							'alt'   => trim(strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) ),
-						);
-					
-						$attimg = wp_get_attachment_image( $image->ID, $size, $default_attr ); ?>
-						
-						<li>
-							<?php echo $attimg; ?>
-						</li>
-						
-					<?php endforeach; ?>
-			
-				</ul>
-				
-			</div><?php
-			
-		}
-	}
 
 }
 
