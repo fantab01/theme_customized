@@ -14,7 +14,6 @@ if ( ! function_exists( 'rams_setup' ) ) {
 		
 		// Post thumbnails
 		add_theme_support( 'post-thumbnails' ); 
-		add_image_size( 'post-image', 800, 9999 );
 		
 		// Post formats
 		add_theme_support( 'post-formats', array( 'gallery', 'quote', 'status' ) );
@@ -253,7 +252,8 @@ function remove_unnecessary_resources() {
 }
 add_action( 'wp_enqueue_scripts', 'remove_unnecessary_resources' );
 
-//解决大图片自动压缩问题
+//每上传一张图片 wordpress都会在媒体库文件夹至少拉七坨不同尺寸的屎，故全面禁止拉屎
+add_filter( 'intermediate_image_sizes_advanced', '__return_false' );
 add_filter( 'big_image_size_threshold', '__return_false' );
 
 function exclude_category_home( $query ) {

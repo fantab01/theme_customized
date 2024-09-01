@@ -19,13 +19,24 @@
 
 				<ul class="mobile-menu bg-dark hidden">
 					
-					<?php
-					if ( has_nav_menu( 'primary' ) ) {
+					<?php if ( has_nav_menu( 'primary' ) ) {
+
+						$nav_menu_args = array( 
+							'container' 		=> '', 
+							'items_wrap' 		=> '%3$s',
+							'theme_location' 	=> 'primary'
+						);
 						wp_nav_menu( $nav_menu_args );
+
 					} else {
+
+						$list_pages_args = array(
+							'container' 	=> '',
+							'title_li' 		=> ''
+						);
 						wp_list_pages( $list_pages_args );
-					} 
-					?>
+						
+					} ?>
 					
 				</ul>
 						
