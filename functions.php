@@ -264,6 +264,15 @@ function exclude_category_home( $query ) {
 }
 add_filter( 'pre_get_posts', 'exclude_category_home' );
 
+function remove_h2_from_post_content( $content ) {
+    if ( is_home() ) {
+        // 使用正则表达式移除首页所有 h2 标签
+        $content = preg_replace('/<h2.*?>.*?<\/h2>/is', '', $content);
+    }
+    return $content;
+}
+add_filter( 'the_content', 'remove_h2_from_post_content' );
+
 function article_index($content) {
 	$matches = array();
 	$ul_li = '';
